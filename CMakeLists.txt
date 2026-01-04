@@ -1,7 +1,4 @@
-﻿# CMakeList.txt : CMake project for SimpleBackendServiceCpp, include source and define
-# project specific logic here.
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required (VERSION 3.10)
 
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
@@ -11,11 +8,14 @@ endif()
 
 project ("SimpleBackendServiceCpp")
 
-# Add source to this project's executable.
-add_executable (SimpleBackendServiceCpp "src/main.cpp"  )
+find_package(Protobuf CONFIG REQUIRED)
+find_package(gRPC CONFIG REQUIRED)
+
+add_executable(SimpleBackendServiceCpp "src/main.cpp")
+
+target_link_libraries(SimpleBackendServiceCpp PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+target_link_libraries(SimpleBackendServiceCpp PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET SimpleBackendServiceCpp PROPERTY CXX_STANDARD 20)
 endif()
-
-# TODO: Add tests and install targets if needed.
