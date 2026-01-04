@@ -12,7 +12,7 @@ endif()
 project ("SimpleBackendServiceCpp")
 
 # Add source to this project's executable.
-add_executable (SimpleBackendServiceCpp "SimpleBackendServiceCpp.cpp" "SimpleBackendServiceCpp.h")
+add_executable (SimpleBackendServiceCpp "src/main.cpp"  )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET SimpleBackendServiceCpp PROPERTY CXX_STANDARD 20)
