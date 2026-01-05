@@ -15,13 +15,6 @@ public:
 	{
 	}
 
-	Job(uint64_t id, std::string type, std::string payload)
-		: m_id(id), m_type(std::move(type)), m_createdAt(Clock::now())
-	{
-		m_payload.resize(payload.size());
-		std::memcpy(m_payload.data(), payload.data(), payload.size());
-	}
-
 	inline uint64_t id() const noexcept { return m_id; }
 	inline const std::string& type() const noexcept { return m_type; }
 	inline const std::vector<std::byte>& payload() const noexcept { return m_payload; }
