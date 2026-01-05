@@ -2,6 +2,7 @@
 #include "../core/executor.h"
 
 #include "../handlers/print_handler.h"
+#include "../handlers/quadratic_equation_handler.h"
 
 #include "proto/jobs.grpc.pb.h"
 #include "proto/jobs.pb.h"
@@ -49,11 +50,13 @@ int main() {
 
 	// Register job handlers
 	executor.registerHandler<PrintHandler>();
+	executor.registerHandler<QuadraticEquationHandler>();
 
 	executor.start(4);
 
 	// Push jobs
 	executor.addJob(Job(1, "print", to_bytes("Hello world")));
+	executor.addJob(Job(2, "quadratic_equation", to_bytes({1.0, 2.0, 1.0})));
 
 	// Wait a bit for processing
 	std::this_thread::sleep_for(std::chrono::seconds(1));

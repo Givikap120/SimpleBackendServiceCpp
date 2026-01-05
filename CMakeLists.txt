@@ -13,7 +13,7 @@ set(PROTO_FILES
 # Executables
 add_executable(SimpleBackendServiceCpp
   "src/server/main.cpp"
- "src/core/job.cpp" "src/core/job.h" "src/core/job_handler.h" "src/core/job_queue.h" "src/core/job_queue.cpp" "src/core/executor.h" "src/core/executor.cpp")
+ "src/core/job.cpp" "src/core/job.h" "src/core/job_handler.h" "src/core/job_queue.h" "src/core/job_queue.cpp" "src/core/executor.h" "src/core/executor.cpp" "src/handlers/quadratic_equation_handler.h")
 
 # Include generated protobuff files
 target_include_directories(SimpleBackendServiceCpp PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
