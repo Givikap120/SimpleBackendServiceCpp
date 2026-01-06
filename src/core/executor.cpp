@@ -32,6 +32,14 @@ void Executor::workerLoop()
 	}
 }
 
+void Executor::addJob(Job&& job)
+{
+	if (!m_running)
+		throw std::runtime_error("Cannot add job when executor is not running");
+
+	m_queue.push(std::move(job));
+}
+
 void Executor::start(std::size_t numThreads)
 {
 	if (m_running)

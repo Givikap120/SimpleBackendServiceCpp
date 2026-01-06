@@ -14,7 +14,8 @@ public:
 	JobQueue(const JobQueue&) = delete;
 	JobQueue& operator=(const JobQueue&) = delete;
 
-	void push(Job job);
+	// Use r value reference explicitly to show that we want to move the job into the queue
+	void push(Job&& job);
 	std::optional<Job> pop();
 
 	void shutdown();

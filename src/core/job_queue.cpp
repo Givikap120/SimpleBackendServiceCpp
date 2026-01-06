@@ -1,6 +1,6 @@
 #include "job_queue.h"
 
-void JobQueue::push(Job job)
+void JobQueue::push(Job&& job)
 {
 	{
 		std::lock_guard<std::mutex> lock(m_mutex);

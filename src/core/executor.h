@@ -44,13 +44,8 @@ public:
 			throw std::runtime_error("Handler for this job type already registered");
 	}
 
-	void addJob(const Job& job)
-	{
-		if (!m_running)
-			throw std::runtime_error("Cannot add job when executor is not running");
-
-		m_queue.push(job);
-	}
+	// Takes the R-value reference explicitly to show that the job is moved into the executor
+	void addJob(Job&& job);
 
 	void start(std::size_t numThreads);
 	void shutdown();
