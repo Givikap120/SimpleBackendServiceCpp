@@ -17,18 +17,10 @@ void Executor::workerLoop()
 			handler = it->second.get();
 		}
 
-		JobResult result;
+		JobResult result = handler ? handler->handle(job) : result = JobResult::Fail("No handler registered for job type: " + job.type());
+		
+		// std::cout << result.log();
 
-		if (handler)
-		{
-			result = handler->handle(job);
-		}
-		else
-		{
-			result = JobResult::Fail("No handler registered for job type: " + job.type());
-		}
-
-		std::cout << result.log();
 	}
 }
 
