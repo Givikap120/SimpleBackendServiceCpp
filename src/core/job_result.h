@@ -1,5 +1,8 @@
 #pragma once
 
+#include <string>
+#include <sstream>
+#include <thread>
 
 struct JobResult
 {
@@ -14,7 +17,7 @@ struct JobResult
 
 	static JobResult Fail(std::string message)
 	{
-		return { false, "FAIL", std::move(message) };
+		return { false, "", std::move(message) };
 	}
 
 	inline std::string log(bool printResult = true) const
