@@ -17,10 +17,12 @@ void Executor::workerLoop()
 			handler = it->second.get();
 		}
 
+		m_notifyJobStarted(job.id());
 		JobResult result = handler ? handler->handle(job) : result = JobResult::Fail("No handler registered for job type: " + job.type());
 		
 		// std::cout << result.log();
 
+		m_notifyJobCompleted(job.id(), std::move(result));
 	}
 }
 

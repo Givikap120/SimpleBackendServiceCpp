@@ -50,6 +50,17 @@ public:
 	void start(std::size_t numThreads);
 	void shutdown();
 
+	// Notification callbacks
+	void setJobStartedNotification(std::function<void(uint64_t)> callback)
+	{
+		m_notifyJobStarted = std::move(callback);
+	}
+
+	void setJobCompletedNotification(std::function<void(uint64_t, JobResult&&)> callback)
+	{
+		m_notifyJobCompleted = std::move(callback);
+	}
+
 private:
 	void workerLoop();
 
@@ -57,4 +68,7 @@ private:
 	std::unordered_map<std::string, std::unique_ptr<JobHandler>> m_handlers{};
 	std::vector<std::jthread> m_workers{};
 	std::atomic<bool> m_running { false };
+
+	std::function<void(uint64_t)> m_notifyJobStarted{};
+	std::function<void(uint64_t, JobResult&&)> m_notifyJobCompleted{};
 };
