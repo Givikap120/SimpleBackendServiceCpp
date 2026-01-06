@@ -15,9 +15,9 @@ public:
 	{
 	}
 
-	inline uint64_t id() const noexcept { return m_id; }
-	inline const std::string& type() const noexcept { return m_type; }
-	inline const std::vector<std::byte>& payload() const noexcept { return m_payload; }
+	uint64_t id() const noexcept { return m_id; }
+	const std::string& type() const noexcept { return m_type; }
+	const std::vector<std::byte>& payload() const noexcept { return m_payload; }
 
 private:
 	uint64_t m_id = 0;

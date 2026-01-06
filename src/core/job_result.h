@@ -20,7 +20,7 @@ struct JobResult
 		return { false, "", std::move(message) };
 	}
 
-	inline std::string log(bool printResult = true) const
+	std::string log(bool printResult = true) const
 	{
 		std::ostringstream oss;
 
