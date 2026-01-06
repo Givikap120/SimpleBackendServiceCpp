@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include "../core/executor.h"
+#include "../intermediate/job_submission_service.h"
 
 #include "../handlers/print_handler.h"
 #include "../handlers/quadratic_equation_handler.h"
@@ -52,14 +53,24 @@ int main() {
 	executor.registerHandler<PrintHandler>();
 	executor.registerHandler<QuadraticEquationHandler>();
 
+	JobSubmissionService jobService(executor);
+
 	executor.start(4);
 
 	// Push jobs
-	executor.addJob(Job(1, "print", to_bytes("Hello world")));
-	executor.addJob(Job(2, "quadratic_equation", to_bytes({1.0, 2.0, 1.0})));
+	uint64_t idPrint = jobService.submit(ApiJobRequest("print", to_bytes("Hello world")));
+	uint64_t idEquation = jobService.submit(ApiJobRequest("quadratic_equation", to_bytes({1.0, 2.0, 1.0})));
+
+	std::optional<JobResult> resultPrint = jobService.getResult(idPrint);
+	std::cout << "Print job ("<< idPrint  <<") status: " << to_string(jobService.getStatus(idPrint)) << "\n";
+	std::cout << "Print job (" << idPrint << ") result: " << (resultPrint ? resultPrint.value().result : "NO RESULT") << "\n";
 
 	// Wait a bit for processing
 	std::this_thread::sleep_for(std::chrono::seconds(1));
+
+	std::optional<JobResult> resultEquation = jobService.getResult(idEquation);
+	std::cout << "Equation job (" << idEquation << ") status: " << to_string(jobService.getStatus(idEquation)) << "\n";
+	std::cout << "Equation job (" << idEquation << ") result: " << (resultEquation ? resultEquation.value().result : "NO RESULT") << "\n";
 
 	// Shutdown executor
 	executor.shutdown();
