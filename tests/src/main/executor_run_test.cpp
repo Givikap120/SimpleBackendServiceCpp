@@ -1,7 +1,5 @@
 #include <gtest/gtest.h>
 #include "test_utils.h"
-#include "core/executor.h"
-#include "intermediate/job_submission_service.h"
 
 TEST_F(ExecutorTest, HandlesSuccessJob) {
 	uint64_t okJobId = m_jobService->submit(ApiJobRequest("test", "Ok"));
@@ -29,3 +27,4 @@ TEST_F(ExecutorTest, HandlesExceptionJob) {
 	EXPECT_EQ(result->errorMessage, "Unhandled payload in TestHandler");
 	EXPECT_EQ(result->result, "");
 }
+
