@@ -2,9 +2,10 @@
   "name": "job-queue",
   "version": "0.1.0",
   "dependencies": [
+    "cpp-httplib",
     "grpc",
     "nlohmann-json",
     "protobuf",
-    "cpp-httplib"
+    "gtest"
   ]
 }

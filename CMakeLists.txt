@@ -46,3 +46,6 @@ set_property(TARGET SimpleBackendServiceCpp PROPERTY CXX_STANDARD 20)
 get_target_property(grpc_cpp_plugin_location gRPC::grpc_cpp_plugin LOCATION)
 protobuf_generate(TARGET SimpleBackendServiceCpp LANGUAGE cpp PROTOS ${PROTO_FILES})
 protobuf_generate(TARGET SimpleBackendServiceCpp LANGUAGE grpc GENERATE_EXTENSIONS .grpc.pb.h .grpc.pb.cc PLUGIN "protoc-gen-grpc=${grpc_cpp_plugin_location}" PROTOS ${PROTO_FILES})
+
+enable_testing()
+add_subdirectory(tests)
