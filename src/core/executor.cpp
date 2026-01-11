@@ -12,12 +12,23 @@ void Executor::workerLoop()
 		JobHandler* handler = nullptr;
 		auto it = m_handlers.find(job.type());
 		if (it != m_handlers.end())
-		{
 			handler = it->second.get();
-		}
 
 		m_notifyJobStarted(job.id());
-		JobResult result = handler ? handler->handle(job) : result = JobResult::Fail("No handler registered for job type: " + job.type());
+
+		JobResult result;
+		try {
+			if (handler)
+				result = handler->handle(job);
+			else
+				result = JobResult::Fail("No handler registered for job type: " + job.type());
+		}
+		catch (const std::exception& e) {
+			result = JobResult::Fail(e.what());
+		}
+		catch (...) {
+			result = JobResult::Fail("Unknown exception in handler");
+		}
 
 		m_notifyJobCompleted(job.id(), std::move(result));
 	}
