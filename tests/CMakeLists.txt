@@ -3,7 +3,7 @@ find_package(GTest REQUIRED)
 add_executable(Tests
  "src/test_utils.cpp"
  "src/main/executor_test.cpp"
- )
+  "src/handlers/quadratic_equation_handler_test.cpp")
 
 target_include_directories(Tests PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../src
