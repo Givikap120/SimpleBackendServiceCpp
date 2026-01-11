@@ -8,6 +8,8 @@ TEST_F(ExecutorTest, HandlesSuccessJob) {
 	auto result = waitForJob(*m_jobService, okJobId);
 	ASSERT_TRUE(result.has_value());
 	EXPECT_TRUE(result->success);
+	EXPECT_EQ(result->result, "Ok");
+	EXPECT_EQ(result->errorMessage, "");
 }
 
 TEST_F(ExecutorTest, HandlesFailJob) {
@@ -16,6 +18,7 @@ TEST_F(ExecutorTest, HandlesFailJob) {
 	ASSERT_TRUE(result.has_value());
 	EXPECT_FALSE(result->success);
 	EXPECT_EQ(result->errorMessage, "Fail");
+	EXPECT_EQ(result->result, "");
 }
 
 TEST_F(ExecutorTest, HandlesExceptionJob) {
@@ -24,4 +27,5 @@ TEST_F(ExecutorTest, HandlesExceptionJob) {
 	ASSERT_TRUE(result.has_value());
 	EXPECT_FALSE(result->success);
 	EXPECT_EQ(result->errorMessage, "Unhandled payload in TestHandler");
+	EXPECT_EQ(result->result, "");
 }
