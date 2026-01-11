@@ -4,12 +4,11 @@
 #include "../core/executor.h"
 #include "../intermediate/job_submission_service.h"
 
-#include "../handlers/print_handler.h"
-#include "../handlers/quadratic_equation_handler.h"
+#include "../handlers/print_handler.hpp"
+#include "../handlers/quadratic_equation_handler.hpp"
 
 #include "proto/jobs.grpc.pb.h"
 #include "proto/jobs.pb.h"
-
 
 using json = nlohmann::json;
 

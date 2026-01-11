@@ -2,7 +2,6 @@
 
 #include "job_queue.h"
 #include "job_handler.h"
-#include "../handlers/print_handler.h"
 
 #include <thread>
 #include <vector>
@@ -12,6 +11,7 @@
 #include <functional>
 #include <atomic>
 #include <type_traits>
+#include <iostream>
 
 class Executor
 {

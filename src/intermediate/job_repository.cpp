@@ -1,5 +1,4 @@
 #include "job_repository.h"
-#include "job_repository.h"
 
 void JobRepository::add(JobRecord record)
 {

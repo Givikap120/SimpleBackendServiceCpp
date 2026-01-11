@@ -1,5 +1,4 @@
 #include "executor.h"
-#include <iostream>
 
 void Executor::workerLoop()
 {
