@@ -18,8 +18,6 @@ void Executor::workerLoop()
 
 		m_notifyJobStarted(job.id());
 		JobResult result = handler ? handler->handle(job) : result = JobResult::Fail("No handler registered for job type: " + job.type());
-		
-		// std::cout << result.log();
 
 		m_notifyJobCompleted(job.id(), std::move(result));
 	}
@@ -50,6 +48,8 @@ void Executor::start(std::size_t numThreads)
 			workerLoop();
 			});
 	}
+
+	std::cout << "[Executor] Now running on " << numThreads << " threads\n";
 }
 
 void Executor::shutdown()

@@ -4,7 +4,7 @@
 
 void RestServer::run(uint16_t port) 
 {
-	// Stop old server if it was running. Safe even if it wasn�t running.
+	// Stop old server if it was running. Safe even if it wasn't running.
 	if (m_server) m_server->stop();
 
 	// Create a new server
@@ -38,6 +38,7 @@ void RestServer::run(uint16_t port)
 
 	std::string ip = "0.0.0.0";
 
+	std::cout << "[REST Server] Listening on " << ip << ":" << port << "\n";
 	m_server->listen(ip, port);
 }
 
