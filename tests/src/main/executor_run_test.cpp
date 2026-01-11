@@ -36,3 +36,13 @@ TEST_F(ExecutorRunTest, HandlesExceptionJob)
 	EXPECT_EQ(result->result, "");
 }
 
+TEST_F(ExecutorRunTest, HandlesUnknownJob)
+{
+	m_executor->start(1);
+	uint64_t unknownJobId = m_jobService->submit(ApiJobRequest("Unknown", "Unknown"));
+	auto result = waitForJob(*m_jobService, unknownJobId);
+	ASSERT_TRUE(result.has_value());
+	EXPECT_FALSE(result->success);
+	EXPECT_EQ(result->errorMessage, "No handler registered for job type: Unknown");
+	EXPECT_EQ(result->result, "");
+}
