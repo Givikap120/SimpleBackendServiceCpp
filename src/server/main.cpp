@@ -33,7 +33,7 @@ int main() {
 	uint64_t idEquation = jobService.submit(ApiJobRequest("quadratic_equation", payload.dump()));
 
 	std::optional<JobResult> resultPrint = jobService.getResult(idPrint);
-	std::cout << "Print job ("<< idPrint  <<") status: " << to_string(jobService.getStatus(idPrint)) << "\n";
+	std::cout << "Print job (" << idPrint << ") status: " << to_string(jobService.getStatus(idPrint)) << "\n";
 	std::cout << "Print job (" << idPrint << ") result: " << (resultPrint ? resultPrint.value().result : "NO RESULT") << "\n";
 
 	// Wait a bit for processing
