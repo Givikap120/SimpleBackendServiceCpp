@@ -21,7 +21,7 @@ public:
 		if (m_running) shutdown();
 	}
 
-	Executor() = default;
+	Executor(bool logging = true) : m_logging(logging) {}
 	Executor(const Executor&) = delete;
 	Executor& operator=(const Executor&) = delete;
 
@@ -37,7 +37,7 @@ public:
 		if (handler->type().empty())
 			throw std::runtime_error("Handler job type cannot be empty");
 
-		std::cout << "[Executor] Registering handler for job type: " << handler->type() << "\n";
+		if (m_logging) std::cout << "[Executor] Registering handler for job type: " << handler->type() << "\n";
 
 		auto [it, inserted] = m_handlers.emplace(handler->type(), std::move(handler));
 		if (!inserted)
@@ -63,6 +63,8 @@ public:
 
 private:
 	void workerLoop();
+
+	bool m_logging;
 
 	JobQueue m_queue{};
 	std::unordered_map<std::string, std::unique_ptr<JobHandler>> m_handlers{};

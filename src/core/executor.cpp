@@ -60,7 +60,7 @@ void Executor::start(std::size_t numThreads)
 			});
 	}
 
-	std::cout << "[Executor] Now running on " << numThreads << " threads\n";
+	if (m_logging) std::cout << "[Executor] Now running on " << numThreads << " threads\n";
 }
 
 void Executor::shutdown()
@@ -80,4 +80,6 @@ void Executor::shutdown()
 	}
 
 	m_workers.clear();
+
+	if (m_logging) std::cout << "[Executor] Shutting down\n";
 }
