@@ -25,20 +25,19 @@ public:
 
 		double discriminant = b * b - 4 * a * c;
 
+		json result;
+
 		if (discriminant < 0)
 		{
-			return JobResult::Ok("No real roots exist");
+			result["roots"] = json::array();
+			return JobResult::Ok(result.dump());
 		}
 
 		double root1 = (-b + std::sqrt(discriminant)) / (2 * a);
 		double root2 = (-b - std::sqrt(discriminant)) / (2 * a);
 
-		// This should be changed to json in the future for better interoperability
-		std::ostringstream oss;
-		oss << "Roots: " << root1;
-		if (root1 != root2) oss << ", " << root2;
-		oss << "\n";
+		result["roots"] = (root1 == root2) ? json::array({ root1 }) : json::array({ root1, root2 });
 
-		return JobResult::Ok(oss.str());
+		return JobResult::Ok(result.dump());
 	}
 };
