@@ -5,7 +5,7 @@
 #include <optional>
 #include <chrono>
 
-#include "../core/job_result.h"
+#include "core/job_result.h"
 
 enum class JobStatus {
 	Unknown,

@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../core/job_handler.h"
-
+#include "core/job_handler.h"
 #include <iostream>
 
 class PrintHandler : public JobHandler

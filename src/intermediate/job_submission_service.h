@@ -4,9 +4,9 @@
 #include <optional>
 #include <atomic>
 
-#include "../api/api_job_request.h"
-#include "../core/executor.h"
-#include "../intermediate/job_repository.h"
+#include "api/api_job_request.h"
+#include "core/executor.h"
+#include "intermediate/job_repository.h"
 
 class JobSubmissionService {
 public:

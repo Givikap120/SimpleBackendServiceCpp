@@ -1,8 +1,7 @@
 #pragma once
 
+#include "core/job_handler.h"
 #include <nlohmann/json.hpp>
-
-#include "../core/job_handler.h"
 
 class QuadraticEquationHandler : public JobHandler
 {

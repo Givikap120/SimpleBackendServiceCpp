@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <httplib.h>
 
-#include "../intermediate/job_submission_service.h"
+#include "intermediate/job_submission_service.h"
 
 class RestServer {
 public:
