@@ -12,7 +12,7 @@ struct JobResult
 
 	static JobResult Ok(std::string result = "")
 	{
-		return { true, std::move(result), "Job was completed successfully" };
+		return { true, std::move(result), "" };
 	}
 
 	static JobResult Fail(std::string message)
