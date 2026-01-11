@@ -7,5 +7,5 @@
 struct ApiJobRequest
 {
 	std::string type = "";
-	std::vector<std::byte> payload{};
+	std::string payload{};
 };

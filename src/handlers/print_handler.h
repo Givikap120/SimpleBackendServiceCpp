@@ -15,8 +15,7 @@ public:
 
 	JobResult handle(const Job& job) override
 	{
-		std::string message(reinterpret_cast<const char*>(job.payload().data()), job.payload().size());
-		std::string logMsg = "[PrintHandler] " + message + "\n";
+		std::string logMsg = "[PrintHandler] " + job.payload() + "\n";
 		std::cout << logMsg;
 		return JobResult::Ok();
 	}

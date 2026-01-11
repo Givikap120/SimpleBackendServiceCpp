@@ -1,5 +1,7 @@
 #pragma once
 
+#include <nlohmann/json.hpp>
+
 #include "../core/job_handler.h"
 
 class QuadraticEquationHandler : public JobHandler
@@ -11,17 +13,15 @@ public:
 		m_type = "quadratic_equation";
 	}
 
+	using json = nlohmann::json;
+
 	JobResult handle(const Job& job) override
 	{
-		if (job.payload().size() != 3 * sizeof(double))
-		{
-			return JobResult::Fail("Invalid payload size for quadratic equation job");
-		}
+		json j = json::parse(job.payload());
 
-		const double* coeffs = reinterpret_cast<const double*>(job.payload().data());
-		double a = coeffs[0];
-		double b = coeffs[1];
-		double c = coeffs[2];
+		double a = j.at("a").get<double>();
+		double b = j.at("b").get<double>();
+		double c = j.at("c").get<double>();
 
 		double discriminant = b * b - 4 * a * c;
 
