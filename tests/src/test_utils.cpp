@@ -30,7 +30,6 @@ void ExecutorTest::SetUp() {
 	m_jobService = std::make_unique<JobSubmissionService>(*m_executor);
 
 	registerHandlers();
-	m_executor->start(2);
 }
 
 void ExecutorTest::TearDown() {
