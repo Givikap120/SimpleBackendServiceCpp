@@ -5,6 +5,7 @@ project(SimpleBackendServiceCpp)
 find_package(Protobuf CONFIG REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
+find_package(httplib CONFIG REQUIRED)
 
 # Proto files
 set(PROTO_FILES
@@ -27,6 +28,7 @@ target_link_libraries(SimpleBackendServiceCpp PRIVATE
   gRPC::grpc
   gRPC::grpc++
   nlohmann_json::nlohmann_json
+  httplib::httplib
 )
 
 set_property(TARGET SimpleBackendServiceCpp PROPERTY CXX_STANDARD 20)
