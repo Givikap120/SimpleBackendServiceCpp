@@ -2,6 +2,7 @@
 #include "test_utils.h"
 
 TEST_F(ExecutorTest, HandlesSuccessJob) {
+	m_executor->start(1);
 	uint64_t okJobId = m_jobService->submit(ApiJobRequest("test", "Ok"));
 	auto result = waitForJob(*m_jobService, okJobId);
 	ASSERT_TRUE(result.has_value());
@@ -11,6 +12,7 @@ TEST_F(ExecutorTest, HandlesSuccessJob) {
 }
 
 TEST_F(ExecutorTest, HandlesFailJob) {
+	m_executor->start(1);
 	uint64_t failJobId = m_jobService->submit(ApiJobRequest("test", "Fail"));
 	auto result = waitForJob(*m_jobService, failJobId);
 	ASSERT_TRUE(result.has_value());
@@ -20,6 +22,7 @@ TEST_F(ExecutorTest, HandlesFailJob) {
 }
 
 TEST_F(ExecutorTest, HandlesExceptionJob) {
+	m_executor->start(1);
 	uint64_t exceptionJobId = m_jobService->submit(ApiJobRequest("test", "Unknown"));
 	auto result = waitForJob(*m_jobService, exceptionJobId);
 	ASSERT_TRUE(result.has_value());

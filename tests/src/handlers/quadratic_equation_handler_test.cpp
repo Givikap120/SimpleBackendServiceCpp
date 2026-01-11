@@ -15,6 +15,8 @@ protected:
 
 TEST_F(QuadraticEquationExecutorTest, TwoDistinctRoots)
 {
+	m_executor->start(1);
+
 	json payload {
 		{"a", 1.0},
 		{"b", -3.0},
@@ -43,6 +45,8 @@ TEST_F(QuadraticEquationExecutorTest, TwoDistinctRoots)
 
 TEST_F(QuadraticEquationExecutorTest, SingleRoot)
 {
+	m_executor->start(1);
+
 	json payload {
 		{"a", 1.0},
 		{"b", -6.0},
@@ -65,6 +69,8 @@ TEST_F(QuadraticEquationExecutorTest, SingleRoot)
 
 TEST_F(QuadraticEquationExecutorTest, NoRealRoots)
 {
+	m_executor->start(1);
+
 	json payload {
 		{"a", 7.0},
 		{"b", 2.0},
@@ -86,6 +92,8 @@ TEST_F(QuadraticEquationExecutorTest, NoRealRoots)
 
 TEST_F(QuadraticEquationExecutorTest, IncorrectPayloadMissingFields)
 {
+	m_executor->start(1);
+
 	json payload {
 		{"a", 1.0}
 	};
@@ -103,6 +111,8 @@ TEST_F(QuadraticEquationExecutorTest, IncorrectPayloadMissingFields)
 
 TEST_F(QuadraticEquationExecutorTest, IncorrectPayloadWrongFieldType)
 {
+	m_executor->start(1);
+
 	json payload {
 		{"a", 1.0},
 		{"b", "not_a_number"},
