@@ -15,11 +15,8 @@ set(PROTO_FILES
 # Core lib
 add_library(SimpleBackendServiceCppLib
     "src/core/job.cpp" "src/core/job_queue.cpp" "src/core/executor.cpp" 
-    "src/intermediate/job_repository.cpp" "src/intermediate/job_submission_service.cpp" 
-    "src/server/rest_server.cpp"
-)
+    "src/intermediate/job_repository.cpp" "src/intermediate/job_submission_service.cpp")
 
-# Linked libraries
 target_link_libraries(SimpleBackendServiceCppLib PUBLIC
   protobuf::libprotoc
   protobuf::libprotobuf
@@ -35,10 +32,13 @@ target_include_directories(SimpleBackendServiceCppLib PUBLIC
 )
 
 # Executable
-add_executable(SimpleBackendServiceCpp src/server/main.cpp)
+add_executable(SimpleBackendServiceCpp "src/server/main.cpp" "src/server/rest_server.cpp" "src/server/grpc_job_service.cpp" "src/server/grpc_server.cpp")
 
-# Linked libraries
 target_link_libraries(SimpleBackendServiceCpp PRIVATE SimpleBackendServiceCppLib)
+
+target_include_directories(SimpleBackendServiceCpp PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
 
 set_property(TARGET SimpleBackendServiceCppLib PROPERTY CXX_STANDARD 20)
 set_property(TARGET SimpleBackendServiceCpp PROPERTY CXX_STANDARD 20)
