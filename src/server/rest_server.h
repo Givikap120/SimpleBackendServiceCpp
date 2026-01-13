@@ -2,15 +2,16 @@
 
 #include <cstdint>
 #include <httplib.h>
-
 #include "intermediate/job_submission_service.h"
+#include "server.h"
 
-class RestServer {
+class RestServer : public Server 
+{
 public:
 	RestServer(JobSubmissionService& jobService)
 		: m_jobService(jobService) {}
 
-	void run(uint16_t port);
+	void run(uint16_t port) override;
 	
 	// Test server
 	void handleHelloWorld(const httplib::Request& req, httplib::Response& res);
