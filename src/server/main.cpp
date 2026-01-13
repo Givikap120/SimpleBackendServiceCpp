@@ -15,14 +15,14 @@ int main() {
 	executor.registerHandler<PrintHandler>();
 	executor.registerHandler<QuadraticEquationHandler>();
 
+	// Start executor with 4 threads
+	executor.start(4);
+
 	// Job submission service allows to submit jobs and query status/results
 	JobSubmissionService jobService(executor);
 
 	// Rest server handles HTTP requests and sends them to job service
 	RestServer server(jobService);
-
-	// Start executor with 4 threads
-	executor.start(4);
 
 	// Start REST server on port 8080
 	server.run(8080);
