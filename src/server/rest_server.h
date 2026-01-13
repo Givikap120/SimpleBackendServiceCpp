@@ -30,4 +30,7 @@ public:
 private:
 	JobSubmissionService& m_jobService;
 	std::unique_ptr<httplib::Server> m_server = nullptr;
+
+	// Forcing localhost only, this is a demonstration project anyway.
+	std::string m_ip = "0.0.0.0";
 };

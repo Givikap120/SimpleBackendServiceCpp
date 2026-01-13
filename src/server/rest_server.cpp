@@ -36,10 +36,8 @@ void RestServer::run(uint16_t port)
 			handleShutdown(req, res);
 		});
 
-	std::string ip = "0.0.0.0";
-
-	std::cout << "[REST Server] Listening on " << ip << ":" << port << "\n";
-	m_server->listen(ip, port);
+	std::cout << "[REST Server] Listening on " << m_ip << ":" << port << "\n";
+	m_server->listen(m_ip, port);
 }
 
 using json = nlohmann::json;
